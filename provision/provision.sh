@@ -102,10 +102,6 @@ apt_package_check_list=(
 
   #Mailcatcher requirement
   libsqlite3-dev
-
-  #Ruby
-  ruby2.2
-  rubygems
 )
 
 echo "Check for apt packages to install..."
@@ -258,12 +254,6 @@ else
   echo -e "\nNo network connection available, skipping package installation"
 fi
 
-# SASS Instalation
-if [[ "$(ruby -v)" ]]; then
-  echo "Installing SASS"
-  gem install sass
-fi
-
 # Configuration for nginx
 if [[ ! -e /etc/nginx/server.key ]]; then
   echo "Generate Nginx server private key..."
@@ -388,6 +378,11 @@ else
 
 fi
 
+# SASS Instalation
+if [[ "$(ruby -v)" ]]; then
+  echo "Installing SASS"
+  gem install sass
+fi
 
 if [[ -f /etc/init/mailcatcher.conf ]]; then
   echo " *" Mailcatcher upstart already configured.
